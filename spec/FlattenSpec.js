@@ -1,5 +1,5 @@
 describe("Flatten", function() {
-  var flatten = require('../../lib/flattenArray.js');
+  var flatten = require('../lib/flattenArray.js');
   var flatten;
 
   beforeEach(function() {
@@ -8,22 +8,32 @@ describe("Flatten", function() {
   });
 
   it("should not contain any null values", function() {
-  nullArray = flatten(nullArray);
+    nullArray = nullArray.flatten();
 
-    var containsNull = false;
-    for (var i = nullArray.length - 1; i >= 0; i--) {
-      if(nullArray[i] === null) {
-        containsNull = true;
+      var containsNull = false;
+      for (var i = nullArray.length - 1; i >= 0; i--) {
+        if(nullArray[i] === null) {
+          containsNull = true;
+        }
       }
-    }
 
-    expect(containsNull).toEqual(false);
+      expect(containsNull).toEqual(false);
   });
 
   
 
   // demonstrates use of spies to intercept and test method calls
-  it("should only contain numbers", function() {
-    
+  it("should not contain any nested arrays", function() {
+    exampleArray = flatten(exampleArray);
+
+    var containsArray = false;
+    for (var i = exampleArray.length - 1; i >= 0; i--) {
+      if(Array.isArray(exampleArray[i])) {
+        containsArray = true;
+      }
+    }
+
+    expect(containsArray).toEqual(false);
   });
+
 });
