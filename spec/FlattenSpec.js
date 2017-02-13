@@ -7,6 +7,12 @@ describe("Flatten", function() {
     nullArray = [null];
   });
 
+  it("should return an array", function() {
+    exampleArray = exampleArray.flatten();
+
+    expect(Array.isArray(exampleArray)).toEqual(true);
+  });
+
   it("should not contain any null values", function() {
     
 
